@@ -8,33 +8,18 @@ const preguntas = [
     message: "Que desa hacer",
     choices: [
       {
-        value: "1",
-        name: `${"1.".green} Crear tarea`,
+        value: 1,
+        name: `${"1.".green} Buscar ciudad`,
       },
       {
-        value: "2",
-        name: `${"2.".green} Lista tareas`,
+        value: 2,
+        name: `${"2.".green} Historial`,
       },
       {
-        value: "3",
-        name: `${"3.".green} Listar tareas completadas`,
-      },
-      {
-        value: "4",
-        name: `${"4.".green} Listar tareas pendientes`,
-      },
-      {
-        value: "5",
-        name: `${"5.".green} Completar tareas(s)`,
-      },
-      {
-        value: "6",
-        name: `${"6.".green} Borrar tareas`,
-      },
-      {
-        value: "0",
+        value: 0,
         name: `${"0.".green} Salir`,
       },
+      
     ],
   },
 ];
