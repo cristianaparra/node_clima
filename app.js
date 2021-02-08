@@ -1,6 +1,11 @@
 require("dotenv").config();
 
-const { inquirerMenu, pausa, leerInput,listarLugares } = require("./helpers/inquirer");
+const {
+  inquirerMenu,
+  pausa,
+  leerInput,
+  listarLugares,
+} = require("./helpers/inquirer");
 const Busquedas = require("./models/busquedas");
 
 const main = async () => {
@@ -13,29 +18,32 @@ const main = async () => {
       case 1:
         //mostrar mensaje
         const termino = await leerInput("Ciudad: ");
-        
+
         //molstrat los lugares
         const lugares = await busquedas.ciudad(termino);
-        
+
         // seleccionar los lugares
         const id = await listarLugares(lugares);
-        const lugarSeleccionado = lugares.find(l=>l,id === id)
-        
+        const lugarSeleccionado = lugares.find((l) => l, id === id);
+
         // clima
-
+        const clima = await busquedas.climaLugar(
+          lugarSeleccionado.lat,
+          lugarSeleccionado.lng
+        );
         //mostrar resultados
-
+        console.clear();
         console.log("\ninformacion de la ciudad\n".green);
-        console.log("Ciudad: ",lugarSeleccionado.nombre);
+        console.log("Ciudad: ", lugarSeleccionado.nombre.green);
         console.log("Lat: ", lugarSeleccionado.lat);
         console.log("Lng: ", lugarSeleccionado.lng);
-        console.log("Temperatura: ");
-        console.log("Minima: ");
-        console.log("Maxima: ");
+        console.log("Temperatura: ", clima.temp);
+        console.log("Minima: ", clima.min);
+        console.log("Maxima: ", clima.max);
+        console.log("Cómo está el clima: ", clima.desc.green);
+
         break;
     }
-
-    console.log({ opt });
 
     if (opt !== 0) await pausa();
   } while (opt !== 0);
